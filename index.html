@@ -53,6 +53,7 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .cd:hover{transform:translateY(-3px);box-shadow:0 8px 26px var(--shh);border-color:var(--mm);background:var(--bgh)}
 .cd:hover::before{opacity:1}
 .cd-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--mf);display:block}
+.cd-img.pos-top{object-position:top}.cd-img.pos-center{object-position:center}.cd-img.pos-bottom{object-position:bottom}
 .cd-ph{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--mf),var(--mm));display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:.84rem}
 .cd-b{padding:16px;flex:1;display:flex;flex-direction:column}
 .cd-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
@@ -70,6 +71,7 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 /* Artist images */
 .ai-r{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px}
 .ai-r img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:var(--mf)}
+.ai-r img.pos-top{object-position:top}.ai-r img.pos-center{object-position:center}.ai-r img.pos-bottom{object-position:bottom}
 .ai-r .ph{width:100%;aspect-ratio:1;background:var(--mf);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--tm)}
 .mbdg{display:inline-block;font-size:.68rem;padding:2px 7px;border-radius:7px;margin:0 3px 3px 0}
 .mb0{background:rgba(138,168,160,.2);color:var(--mk)}.mb1{background:rgba(148,167,176,.2);color:#5a6f7a}.mb2{background:rgba(181,163,166,.2);color:#7a5a5f}.mb3{background:rgba(166,163,181,.2);color:#5f5a7a}
@@ -98,6 +100,7 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .cl-it:hover{transform:translateY(-2px);box-shadow:0 4px 14px var(--shh);border-color:var(--mm)}
 .cl-it.sel{border-color:var(--mt);background:rgba(138,168,160,.1);box-shadow:0 0 0 2px rgba(138,168,160,.2)}
 .cl-it img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;background:var(--mf);margin-bottom:6px}
+.cl-it img.pos-top{object-position:top}.cl-it img.pos-center{object-position:center}.cl-it img.pos-bottom{object-position:bottom}
 .cl-it .iph{width:100%;aspect-ratio:1;border-radius:6px;background:linear-gradient(135deg,var(--mf),var(--mm));display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:1.5rem;margin-bottom:6px}
 .cl-it .nm{font-size:.83rem;color:var(--tp);font-weight:500}
 .cl-it .en{font-size:.72rem;color:var(--tm)}
@@ -283,7 +286,7 @@ function rP(){
   const g=document.getElementById('pG');
   if(!l.length){g.innerHTML='<div class="empty"><p>暂无 prompt</p></div>';return}
   g.innerHTML=l.map((p,i)=>`<div class="cd" onclick="dP(${p.id})">
-    ${p.img?`<img class="cd-img" src="${esc(p.img)}" onerror="this.outerHTML='<div class=cd-ph>📷</div>'">`:'<div class="cd-ph">📷</div>'}
+    ${p.img?`<img class="cd-img pos-${p.img_pos||'top'}" src="${esc(p.img)}" onerror="this.outerHTML='<div class=cd-ph>📷</div>'">`:'<div class="cd-ph">📷</div>'}
     <div class="cd-b"><div class="cd-h"><div class="cd-t">${esc(p.title)}</div><div class="cd-n">#${String(i+1).padStart(3,'0')}</div></div>
     <div class="cd-d">${esc(p.prompt)}</div>
     <div class="cd-tg">${(p.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
@@ -340,7 +343,7 @@ function rC(){
     const adm=isAdmin()?`<div class="acts"><button onclick="event.stopPropagation();oM('cie',${i.id})" title="编辑">✎</button><button onclick="event.stopPropagation();dlCI(${i.id})" title="删除">×</button></div>`:'';
     return`<div class="cl-it${sel?' sel':''}" onclick="tgSel(${i.id})">
       <div class="ck"></div>${adm}
-      ${i.img?`<img src="${esc(i.img)}" onerror="this.outerHTML='<div class=iph>👘</div>'">`:'<div class="iph">👘</div>'}
+      ${i.img?`<img class="pos-${i.img_pos||'top'}" src="${esc(i.img)}" onerror="this.outerHTML='<div class=iph>👘</div>'">`:'<div class="iph">👘</div>'}
       <div class="nm">${esc(i.name)}</div><div class="en">${esc(i.en||'')}</div><div class="pr">${esc(i.prompt)}</div>
     </div>`}).join('');
 }
@@ -372,6 +375,7 @@ function oM(type,eid){
       <div class="fr"><div class="fg"><label>标签（逗号分隔）</label><input id="f_tg" value="${esc((p?.tags||[]).join(', '))}"></div>
       <div class="fg"><label>模型 / 参数</label><input id="f_m" value="${esc(p?.model||'')}"></div></div>
       <div class="fg"><label>封面图 URL</label><input id="f_img" value="${esc(p?.img||'')}"></div>
+      <div class="fg"><label>图片对齐</label><select id="f_imgpos"><option value="top"${(p?.img_pos||'top')==='top'?' selected':''}>顶部（人脸在上）</option><option value="center"${p?.img_pos==='center'?' selected':''}>居中</option><option value="bottom"${p?.img_pos==='bottom'?' selected':''}>底部</option></select></div>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
   }else if(type==='a'){
     const a=eid?D.a.find(i=>i.id===eid):null;
@@ -381,6 +385,7 @@ function oM(type,eid){
       <div class="fg"><label>画师串</label><textarea id="f_st">${esc(a?.string||'')}</textarea></div>
       <div class="fg"><label>标签</label><input id="f_tg" value="${esc((a?.tags||[]).join(', '))}"></div>
       <div class="fg"><label>展示图 URL（每行一个）</label><textarea id="f_im" style="min-height:50px">${(a?.images||[]).join('\n')}</textarea></div>
+      <div class="fg"><label>图片对齐</label><select id="f_imgpos"><option value="top"${(a?.img_pos||'top')==='top'?' selected':''}>顶部（人脸在上）</option><option value="center"${a?.img_pos==='center'?' selected':''}>居中</option><option value="bottom"${a?.img_pos==='bottom'?' selected':''}>底部</option></select></div>
       <div id="mFs">${ms.map((m,i)=>`<div class="fr" style="margin-bottom:6px"><div class="fg" style="margin:0"><label>模型${i+1}</label><input class="mfn" value="${esc(m.name)}"></div><div class="fg" style="margin:0"><label>备注</label><input class="mfo" value="${esc(m.notes)}"></div></div>`).join('')}</div>
       <button onclick="addMF()" style="font-size:.76rem;color:var(--md);background:none;border:none;cursor:pointer;margin-bottom:12px">+ 添加模型</button>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
@@ -392,6 +397,7 @@ function oM(type,eid){
       <div class="fg"><label>Prompt Tag</label><input id="f_cip" value="${esc(it?.prompt||'')}"></div>
       <div class="fg"><label>所属分类</label><select id="f_cic">${D.cats.map(c=>`<option value="${c.id}"${it?.cat===c.id?' selected':''}>${c.icon} ${esc(c.name)}</option>`).join('')}</select></div>
       <div class="fg"><label>图片 URL</label><input id="f_cii" value="${esc(it?.img||'')}"></div>
+      <div class="fg"><label>图片对齐</label><select id="f_cipos"><option value="top"${(it?.img_pos||'top')==='top'?' selected':''}>顶部（人脸在上）</option><option value="center"${it?.img_pos==='center'?' selected':''}>居中</option><option value="bottom"${it?.img_pos==='bottom'?' selected':''}>底部</option></select></div>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
   }else if(type==='cc'){
     b.innerHTML=`<h2>✦ 新增分类</h2>
@@ -409,7 +415,7 @@ async function sF(){
     if(t==='p'){
       const title=document.getElementById('f_t').value.trim(),prompt=document.getElementById('f_p').value.trim();
       if(!title||!prompt){alert('请填写标题和 Prompt');return}
-      const o={title,prompt,negative:document.getElementById('f_n').value.trim(),tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),model:document.getElementById('f_m').value.trim(),img:document.getElementById('f_img').value.trim()};
+      const o={title,prompt,negative:document.getElementById('f_n').value.trim(),tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),model:document.getElementById('f_m').value.trim(),img:document.getElementById('f_img').value.trim(),img_pos:document.getElementById('f_imgpos').value};
       if(S.eid)await sb('prompts?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
       else await sb('prompts',{method:'POST',body:JSON.stringify(o)});
     }else if(t==='a'){
@@ -417,13 +423,13 @@ async function sF(){
       if(!name||!str){alert('请填写名称和画师串');return}
       const ns=document.querySelectorAll('.mfn'),os=document.querySelectorAll('.mfo'),models=[];
       for(let i=0;i<ns.length;i++){const n=ns[i].value.trim();if(n)models.push({name:n,notes:os[i]?.value.trim()||''})}
-      const o={name,string:str,tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),models,images:document.getElementById('f_im').value.split('\n').map(s=>s.trim()).filter(Boolean)};
+      const o={name,string:str,tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),models,images:document.getElementById('f_im').value.split('\n').map(s=>s.trim()).filter(Boolean),img_pos:document.getElementById('f_imgpos').value};
       if(S.eid)await sb('artists?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
       else await sb('artists',{method:'POST',body:JSON.stringify(o)});
     }else if(t==='ci'||t==='cie'){
       const name=document.getElementById('f_cin').value.trim();
       if(!name){alert('请填写名称');return}
-      const o={name,en:document.getElementById('f_cie').value.trim(),prompt:document.getElementById('f_cip').value.trim(),cat:document.getElementById('f_cic').value,img:document.getElementById('f_cii').value.trim()};
+      const o={name,en:document.getElementById('f_cie').value.trim(),prompt:document.getElementById('f_cip').value.trim(),cat:document.getElementById('f_cic').value,img:document.getElementById('f_cii').value.trim(),img_pos:document.getElementById('f_cipos').value};
       if(t==='cie'&&S.eid)await sb('clothing_items?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
       else await sb('clothing_items',{method:'POST',body:JSON.stringify(o)});
     }else if(t==='cc'){
