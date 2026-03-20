@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雪の画廊</title>
+<title>雪色の画廊</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -147,7 +147,7 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 </style>
 </head>
 <body>
-<header><h1>雪の画廊</h1><p class="sub">PIXAI PROMPT COLLECTION</p><div class="hl"></div></header>
+<header><h1>雪色の画廊</h1><p class="sub">PIXAI PROMPT COLLECTION</p><div class="hl"></div></header>
 
 <div class="admin-bar" id="adminBar">
   <button id="adminBtn" onclick="toggleAdmin()">🔒 管理员登录</button>
@@ -455,10 +455,10 @@ function dP(id){
     <label style="font-size:.77rem;color:var(--tm)">Prompt</label><div class="dp">${esc(p.prompt)}</div>
     ${p.negative?`<label style="font-size:.77rem;color:var(--tm)">Negative</label><div class="dp" style="border-left:3px solid var(--mb)">${esc(p.negative)}</div>`:''}
     <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="cpb" id="cpPrmBtn">复制 Prompt</button>
+      <button class="cpb" id="cpPmtBtn">复制 Prompt</button>
       <button class="bc" onclick="cMo('dMo')">关闭</button></div>`;
   oMo('dMo');
-  document.getElementById('cpPrmBtn').onclick=function(){cpx(p.prompt);this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制 Prompt',1200)};
+  document.getElementById('cpPmtBtn').onclick=function(){cpx(p.prompt);this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制 Prompt',1200)};
 }
 function dA(id){
   const a=D.a.find(i=>i.id===id);if(!a)return;
