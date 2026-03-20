@@ -11,7 +11,7 @@
 --bg:#e8edec;--bg2:#f4f6f5;--bgc:#f0f4f3;--bgh:#e5ecea;
 --mt:#8aa8a0;--mb:#94a7b0;--mg:#a3b5a6;--mm:#c2d1cc;--mf:#d0dbd7;--md:#6b8f86;--mk:#5a7a72;
 --tp:#3d4f4a;--ts:#6b7f78;--tm:#8a9e96;
---bd:#c8d5d0;--sh:rgba(106,143,134,.08);--shh:rgba(106,143,134,.15);
+--bd:#c8d5d0;--shh:rgba(106,143,134,.15);
 --tbg:rgba(138,168,160,.15);--ttx:#5a7a72;--ov:rgba(61,79,74,.6)
 }
 body{font-family:'Zen Kaku Gothic New','Noto Serif JP',sans-serif;background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden}
@@ -20,14 +20,20 @@ header{position:relative;z-index:1;text-align:center;padding:42px 20px 14px}
 header h1{font-family:'Noto Serif JP',serif;font-weight:300;font-size:2.2rem;letter-spacing:.15em;background:linear-gradient(135deg,var(--md),var(--mb));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25em;margin-top:3px}
 .hl{width:50px;height:1.5px;background:linear-gradient(90deg,transparent,var(--mt),transparent);margin:12px auto 0}
-.nav{position:relative;z-index:2;display:flex;justify-content:center;gap:6px;padding:18px 20px 16px;flex-wrap:wrap}
+
+/* Admin bar */
+.admin-bar{position:relative;z-index:3;text-align:center;padding:8px 20px}
+.admin-bar button{padding:6px 16px;border-radius:16px;border:1px solid var(--bd);background:var(--bg2);font-family:inherit;font-size:.78rem;color:var(--ts);cursor:pointer;transition:all .3s}
+.admin-bar button:hover{border-color:var(--mt);color:var(--mk)}
+.admin-bar button.logged{background:var(--mt);color:#fff;border-color:var(--mt)}
+.admin-bar .status{font-size:.74rem;color:var(--tm);margin-left:6px}
+
+.nav{position:relative;z-index:2;display:flex;justify-content:center;gap:6px;padding:12px 20px 16px;flex-wrap:wrap}
 .nb{padding:8px 22px;border-radius:22px;border:1px solid var(--bd);background:var(--bg2);font-family:inherit;font-size:.84rem;color:var(--ts);cursor:pointer;transition:all .3s}
 .nb:hover{border-color:var(--mt);color:var(--mk)}
 .nb.on{background:linear-gradient(135deg,var(--mt),var(--md));color:#fff;border-color:transparent;box-shadow:0 2px 12px rgba(106,143,134,.25)}
 .sec{position:relative;z-index:1;max-width:1260px;margin:0 auto;padding:0 20px 50px;display:none}
 .sec.on{display:block}
-
-/* Controls */
 .ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
 .srch{flex:1;min-width:160px;max-width:320px;position:relative}
 .srch input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--bd);border-radius:9px;background:var(--bg2);font-family:inherit;font-size:.84rem;color:var(--tp);outline:none;transition:border .3s,box-shadow .3s}
@@ -39,8 +45,6 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .ba{padding:8px 16px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--mt),var(--md));color:#fff;font-family:inherit;font-size:.83rem;cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(106,143,134,.2);white-space:nowrap}
 .ba:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(106,143,134,.3)}
 .spacer{flex:1}
-
-/* Grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
 
 /* Card */
@@ -61,29 +65,25 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .cd-a{display:flex;gap:4px}
 .cd-a button{background:none;border:none;color:var(--tm);cursor:pointer;padding:3px;border-radius:5px;transition:all .2s}
 .cd-a button:hover{color:var(--md);background:var(--tbg)}
-.ic-cp{width:14px;height:14px}
+.ic{width:14px;height:14px}
 
-/* Artist mini images */
+/* Artist images */
 .ai-r{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px}
 .ai-r img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:var(--mf)}
 .ai-r .ph{width:100%;aspect-ratio:1;background:var(--mf);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--tm)}
 .mbdg{display:inline-block;font-size:.68rem;padding:2px 7px;border-radius:7px;margin:0 3px 3px 0}
 .mb0{background:rgba(138,168,160,.2);color:var(--mk)}.mb1{background:rgba(148,167,176,.2);color:#5a6f7a}.mb2{background:rgba(181,163,166,.2);color:#7a5a5f}.mb3{background:rgba(166,163,181,.2);color:#5f5a7a}
 
-/* ===== CLOTHING ===== */
-.cl-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+/* Clothing */
 .cl-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .cl-cat{padding:8px 18px;border-radius:20px;border:1px solid var(--bd);background:var(--bg2);font-size:.84rem;color:var(--ts);cursor:pointer;transition:all .3s;user-select:none;display:flex;align-items:center;gap:5px}
 .cl-cat:hover{border-color:var(--mt);color:var(--mk)}
 .cl-cat.on{background:var(--mt);color:#fff;border-color:var(--mt)}
 .cl-cat .cnt{font-size:.7rem;opacity:.7}
-
-/* Copy bar */
 .cp-bar{background:var(--bgc);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:none}
 .cp-bar.show{display:block}
 .cp-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.cp-info{font-size:.84rem;color:var(--ts)}
-.cp-info strong{color:var(--mk)}
+.cp-info{font-size:.84rem;color:var(--ts)}.cp-info strong{color:var(--mk)}
 .cp-acts{display:flex;gap:6px;flex-wrap:wrap}
 .cp-btn{padding:7px 18px;border-radius:8px;border:none;font-family:inherit;font-size:.82rem;cursor:pointer;transition:all .3s}
 .cp-copy{background:linear-gradient(135deg,var(--mt),var(--md));color:#fff;box-shadow:0 2px 8px rgba(106,143,134,.2)}
@@ -93,8 +93,6 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .cp-all{background:transparent;color:var(--md);border:1px solid var(--mt)}
 .cp-all:hover{background:rgba(138,168,160,.1)}
 .cp-preview{font-size:.8rem;color:var(--ts);line-height:1.6;word-break:break-all;max-height:60px;overflow-y:auto;background:var(--bg);border-radius:7px;padding:8px 10px;border:1px solid var(--bd)}
-
-/* Clothing grid */
 .cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
 .cl-it{background:var(--bgc);border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center;transition:all .3s;cursor:pointer;position:relative}
 .cl-it:hover{transform:translateY(-2px);box-shadow:0 4px 14px var(--shh);border-color:var(--mm)}
@@ -124,15 +122,10 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .fg input:focus,.fg textarea:focus{border-color:var(--mt)}
 .fg textarea{min-height:80px;resize:vertical;line-height:1.7}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.fg .hn{font-size:.7rem;color:var(--tm);margin-top:2px}
 .mbt{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
 .mbt button{padding:8px 20px;border-radius:8px;border:none;font-family:inherit;font-size:.84rem;cursor:pointer;transition:all .3s}
-.bc{background:var(--bg);color:var(--ts);border:1px solid var(--bd)!important}
-.bc:hover{background:var(--bd)}
-.bs{background:linear-gradient(135deg,var(--mt),var(--md));color:#fff}
-.bs:hover{box-shadow:0 4px 16px rgba(106,143,134,.3)}
-
-/* Detail */
+.bc{background:var(--bg);color:var(--ts);border:1px solid var(--bd)!important}.bc:hover{background:var(--bd)}
+.bs{background:linear-gradient(135deg,var(--mt),var(--md));color:#fff}.bs:hover{box-shadow:0 4px 16px rgba(106,143,134,.3)}
 .dp{background:var(--bg);border-radius:8px;padding:12px;font-size:.84rem;line-height:1.8;color:var(--tp);margin:8px 0;word-break:break-all;white-space:pre-wrap;border:1px solid var(--bd)}
 .cpb{padding:7px 15px;border-radius:7px;border:1px solid var(--mt);background:transparent;color:var(--md);font-family:inherit;font-size:.8rem;cursor:pointer;transition:all .3s}
 .cpb:hover{background:var(--mt);color:#fff}
@@ -140,66 +133,63 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .ad-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin:10px 0}
 .ad-imgs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;background:var(--mf);cursor:pointer;transition:transform .3s}
 .ad-imgs img:hover{transform:scale(1.03)}
-
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px)}
 .lb.show{display:flex}
 .lb img{max-width:90%;max-height:90%;object-fit:contain;border-radius:8px}
 .empty{grid-column:1/-1;text-align:center;padding:45px 20px;color:var(--tm)}
+.loading{text-align:center;padding:40px;color:var(--tm);font-size:.9rem}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--mk);color:#fff;padding:9px 26px;border-radius:10px;font-size:.84rem;opacity:0;transition:all .35s;z-index:300;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media(max-width:640px){
-  header h1{font-size:1.7rem}
-  .grid{grid-template-columns:1fr}
-  .sec{padding:0 12px 40px}
-  .mbox{padding:20px;width:96%}
-  .fr{grid-template-columns:1fr}
-  .cl-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  header h1{font-size:1.7rem}.grid{grid-template-columns:1fr}.sec{padding:0 12px 40px}.mbox{padding:20px;width:96%}.fr{grid-template-columns:1fr}.cl-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--mm);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--mt)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--mm);border-radius:3px}
 </style>
 </head>
 <body>
-<header><h1>雪色の画廊</h1><p class="sub">PIXAI PROMPT COLLECTION</p><div class="hl"></div></header>
+<header><h1>雪の画廊</h1><p class="sub">PIXAI PROMPT COLLECTION</p><div class="hl"></div></header>
+
+<div class="admin-bar" id="adminBar">
+  <button id="adminBtn" onclick="toggleAdmin()">🔒 管理员登录</button>
+  <span class="status" id="adminStatus"></span>
+</div>
+
 <nav class="nav">
   <button class="nb on" onclick="sw('prompts')">✦ Prompt 收藏</button>
   <button class="nb" onclick="sw('artists')">✦ 画师串</button>
   <button class="nb" onclick="sw('clothing')">✦ 服装图鉴</button>
 </nav>
 
-<!-- PROMPTS -->
 <div class="sec on" id="s-prompts">
   <div class="ctrl">
     <div class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="pS" placeholder="搜索 prompt ..."></div>
     <div class="ft" id="pF"></div>
     <div class="spacer"></div>
-    <button class="ba" onclick="oM('p')">+ 新增</button>
+    <button class="ba" id="pAdd" onclick="oM('p')" style="display:none">+ 新增</button>
   </div>
-  <div class="grid" id="pG"></div>
+  <div class="grid" id="pG"><div class="loading">加载中...</div></div>
 </div>
 
-<!-- ARTISTS -->
 <div class="sec" id="s-artists">
   <div class="ctrl">
     <div class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="aS" placeholder="搜索画师 ..."></div>
     <div class="ft" id="aF"></div>
     <div class="spacer"></div>
-    <button class="ba" onclick="oM('a')">+ 新增画师</button>
+    <button class="ba" id="aAdd" onclick="oM('a')" style="display:none">+ 新增画师</button>
   </div>
-  <div class="grid" id="aG"></div>
+  <div class="grid" id="aG"><div class="loading">加载中...</div></div>
 </div>
 
-<!-- CLOTHING -->
 <div class="sec" id="s-clothing">
-  <div class="cl-bar">
+  <div class="ctrl" id="clCtrl">
     <div class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="cS" placeholder="搜索服装 ..."></div>
     <div class="spacer"></div>
-    <button class="ba" onclick="oM('ci')">+ 新增单品</button>
-    <button class="ba" style="background:linear-gradient(135deg,var(--mb),#7a8fa0)" onclick="oM('cc')">+ 新增分类</button>
+    <button class="ba" id="ciAdd" onclick="oM('ci')" style="display:none">+ 新增单品</button>
+    <button class="ba" id="ccAdd" onclick="oM('cc')" style="display:none;background:linear-gradient(135deg,var(--mb),#7a8fa0)">+ 新增分类</button>
   </div>
   <div class="cl-cats" id="cCats"></div>
   <div id="cpBar" class="cp-bar"></div>
-  <div class="cl-grid" id="cG"></div>
+  <div class="cl-grid" id="cG"><div class="loading">加载中...</div></div>
 </div>
 
 <div class="mo" id="uMo"><div class="mbox" id="uMb"></div></div>
@@ -208,261 +198,158 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 <div class="toast" id="toast"></div>
 
 <script>
-const K={p:'yg4_p',a:'yg4_a',c:'yg4_c'};
-let D={p:[],a:[],c:{cats:[],items:[]}};
-let S={tab:'prompts',eid:null,et:null,pF:null,aF:null,cF:null,cQ:'',sel:new Set()};
+// ===== SUPABASE CONFIG =====
+const SB_URL='https://xvlxytmmmmqbaiffehma.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bHh5dG1tbW1xYmFpZmZlaG1hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMDQ1ODcsImV4cCI6MjA4OTU4MDU4N30.WxG-1DZfLq4thtV3dwxFeEINrBw5U8TWg3OgWi00E3c';
+const H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation'};
 
-// ===== LOAD =====
-function ld(){
-  try{for(let k in K){const d=JSON.parse(localStorage.getItem(K[k]));if(d){if(k==='c'&&d.cats)D[k]=d;else if(Array.isArray(d))D[k]=d;}}}catch(e){}
-  if(!D.p.length)D.p=[
-    {id:1,title:'冬夜星空下的少女',prompt:'1girl, solo, long hair, silver hair, blue eyes, winter coat, scarf, night sky, stars, snowfall, soft lighting, masterpiece, best quality',negative:'low quality, worst quality, blurry',tags:['人物','冬季'],model:'Anything V5 | Steps:28',date:'2026-03-18',img:''},
-    {id:2,title:'赛博朋克都市黄昏',prompt:'cyberpunk city, sunset, neon lights, rain, wet street reflections, holographic ads, futuristic buildings, dramatic clouds, ultra detailed, 8k',negative:'low quality, blurry',tags:['风景','赛博朋克'],model:'DreamShaper XL | Steps:35',date:'2026-03-15',img:''},
-    {id:3,title:'水墨山水·雾中仙境',prompt:'Chinese ink painting, misty mountains, waterfall, ancient pavilion, pine trees, crane, fog, sumi-e, monochrome subtle blue, ethereal, masterpiece',negative:'colorful, modern, low quality',tags:['风景','水墨'],model:'CounterfeitXL | Steps:30',date:'2026-03-10',img:''}
-  ];
-  if(!D.a.length)D.a=[
-    {id:1,name:'画师A风格串',string:'artist:xxx, detailed lineart, soft shading, pastel palette',tags:['柔和','线稿'],models:[{name:'Anything V5',notes:'线条表现最佳'},{name:'NovelAI V3',notes:'色调偏冷但细腻'}],images:[],date:'2026-03-16'},
-    {id:2,name:'厚涂油画风',string:'impasto, thick brush strokes, oil painting texture, vibrant colors, painterly',tags:['厚涂','油画'],models:[{name:'DreamShaper XL',notes:'油画质感最强'}],images:[],date:'2026-03-12'}
-  ];
-  if(!D.c.cats||!D.c.cats.length){
-    D.c={cats:[
-      {id:'top',name:'上衣',icon:'👚'},
-      {id:'bottom',name:'下装',icon:'👖'},
-      {id:'dress',name:'连衣裙',icon:'👗'},
-      {id:'outerwear',name:'外套',icon:'🧥'},
-      {id:'sleeve',name:'袖型',icon:'💪'},
-      {id:'collar',name:'领型',icon:'👔'},
-      {id:'silhouette',name:'版型',icon:'📐'},
-      {id:'material',name:'材质',icon:'🧶'},
-      {id:'pattern',name:'花纹',icon:'🎨'},
-      {id:'accessory',name:'配饰',icon:'🎀'},
-      {id:'legwear',name:'腿部',icon:'🦵'},
-      {id:'shoes',name:'鞋子',icon:'👟'}
-    ],items:[
-      // 上衣
-      {id:101,name:'水手服',en:'sailor uniform',prompt:'sailor_collar, serafuku',cat:'top',img:''},
-      {id:102,name:'衬衫',en:'shirt',prompt:'white_shirt, collared_shirt, dress_shirt',cat:'top',img:''},
-      {id:103,name:'T恤',en:'t-shirt',prompt:'t-shirt, casual_top',cat:'top',img:''},
-      {id:104,name:'卫衣',en:'hoodie',prompt:'hoodie, oversized_hoodie, drawstring',cat:'top',img:''},
-      {id:105,name:'毛衣',en:'sweater',prompt:'sweater, knit_sweater',cat:'top',img:''},
-      {id:106,name:'吊带',en:'camisole',prompt:'camisole, spaghetti_straps',cat:'top',img:''},
-      {id:107,name:'背心',en:'vest / tank top',prompt:'tank_top, sleeveless_shirt',cat:'top',img:''},
-      {id:108,name:'抹胸',en:'tube top',prompt:'tube_top, strapless_top, bandeau',cat:'top',img:''},
-      {id:109,name:'Crop top',en:'crop top',prompt:'crop_top, midriff, short_top',cat:'top',img:''},
-      {id:110,name:'马甲',en:'waistcoat',prompt:'vest, waistcoat, formal_vest',cat:'top',img:''},
-      // 下装
-      {id:201,name:'百褶裙',en:'pleated skirt',prompt:'pleated_skirt',cat:'bottom',img:''},
-      {id:202,name:'包臀裙',en:'pencil skirt',prompt:'pencil_skirt, tight_skirt',cat:'bottom',img:''},
-      {id:203,name:'A字裙',en:'A-line skirt',prompt:'a-line_skirt, flared_skirt',cat:'bottom',img:''},
-      {id:204,name:'鱼尾裙',en:'mermaid skirt',prompt:'mermaid_skirt, fishtail_skirt',cat:'bottom',img:''},
-      {id:205,name:'短裤',en:'shorts',prompt:'shorts, denim_shorts',cat:'bottom',img:''},
-      {id:206,name:'长裤',en:'pants',prompt:'long_pants, trousers',cat:'bottom',img:''},
-      {id:207,name:'阔腿裤',en:'wide-leg pants',prompt:'wide-leg_pants, palazzo_pants',cat:'bottom',img:''},
-      {id:208,name:'牛仔裤',en:'jeans',prompt:'jeans, denim_pants',cat:'bottom',img:''},
-      // 连衣裙
-      {id:301,name:'洛丽塔',en:'lolita dress',prompt:'lolita_fashion, gothic_lolita, frills, petticoat',cat:'dress',img:''},
-      {id:302,name:'旗袍',en:'cheongsam',prompt:'china_dress, cheongsam, side_slit, mandarin_collar',cat:'dress',img:''},
-      {id:303,name:'礼服',en:'evening gown',prompt:'evening_dress, formal_gown, elegant_dress',cat:'dress',img:''},
-      {id:304,name:'JK制服',en:'JK uniform',prompt:'school_uniform, serafuku, sailor_collar, pleated_skirt',cat:'dress',img:''},
-      {id:305,name:'女仆装',en:'maid outfit',prompt:'maid, maid_outfit, maid_headdress, apron',cat:'dress',img:''},
-      {id:306,name:'和服',en:'kimono',prompt:'kimono, obi, japanese_clothes, wide_sleeves',cat:'dress',img:''},
-      {id:307,name:'汉服',en:'hanfu',prompt:'hanfu, chinese_traditional_clothes, flowing_robes',cat:'dress',img:''},
-      {id:308,name:'婚纱',en:'wedding dress',prompt:'wedding_dress, bridal_gown, white_dress, veil',cat:'dress',img:''},
-      {id:309,name:'巫女服',en:'miko outfit',prompt:'miko, shrine_maiden, hakama, japanese_shrine',cat:'dress',img:''},
-      // 外套
-      {id:401,name:'大衣',en:'coat',prompt:'long_coat, overcoat, trench_coat',cat:'outerwear',img:''},
-      {id:402,name:'斗篷',en:'cloak',prompt:'cloak, hooded_cloak, cape',cat:'outerwear',img:''},
-      {id:403,name:'夹克',en:'jacket',prompt:'jacket, zip_jacket',cat:'outerwear',img:''},
-      {id:404,name:'皮衣',en:'leather jacket',prompt:'leather_jacket, biker_jacket, zipper',cat:'outerwear',img:''},
-      {id:405,name:'西装',en:'blazer',prompt:'blazer, suit_jacket, formal',cat:'outerwear',img:''},
-      {id:406,name:'开衫',en:'cardigan',prompt:'cardigan, open_cardigan, knit_cardigan',cat:'outerwear',img:''},
-      {id:407,name:'风衣',en:'trench coat',prompt:'trench_coat, belted_coat',cat:'outerwear',img:''},
-      // 袖型
-      {id:501,name:'无袖',en:'sleeveless',prompt:'sleeveless',cat:'sleeve',img:''},
-      {id:502,name:'短袖',en:'short sleeves',prompt:'short_sleeves',cat:'sleeve',img:''},
-      {id:503,name:'长袖',en:'long sleeves',prompt:'long_sleeves',cat:'sleeve',img:''},
-      {id:504,name:'灯笼袖',en:'puff sleeves',prompt:'puffy_sleeves, puff_sleeves, bishop_sleeves',cat:'sleeve',img:''},
-      {id:505,name:'泡泡袖',en:'bubble sleeves',prompt:'puffy_short_sleeves, bubble_sleeves',cat:'sleeve',img:''},
-      {id:506,name:'喇叭袖',en:'bell sleeves',prompt:'bell_sleeves, flared_sleeves',cat:'sleeve',img:''},
-      {id:507,name:'和服袖',en:'wide sleeves',prompt:'wide_sleeves, kimono_sleeves',cat:'sleeve',img:''},
-      {id:508,name:'露肩',en:'off-shoulder',prompt:'off_shoulder, bare_shoulders',cat:'sleeve',img:''},
-      // 领型
-      {id:601,name:'圆领',en:'round neck',prompt:'round_neck, crew_neck',cat:'collar',img:''},
-      {id:602,name:'V领',en:'V-neck',prompt:'v-neck, plunging_neckline',cat:'collar',img:''},
-      {id:603,name:'高领',en:'turtleneck',prompt:'turtleneck, high_collar',cat:'collar',img:''},
-      {id:604,name:'水手领',en:'sailor collar',prompt:'sailor_collar',cat:'collar',img:''},
-      {id:605,name:'立领',en:'mandarin collar',prompt:'mandarin_collar, chinese_collar',cat:'collar',img:''},
-      {id:606,name:'翻领',en:'lapel collar',prompt:'collared_shirt, lapels',cat:'collar',img:''},
-      {id:607,name:'一字领',en:'off-shoulder neck',prompt:'off_shoulder, bare_shoulders, strapless',cat:'collar',img:''},
-      {id:608,name:'荷叶领',en:'ruffle collar',prompt:'ruffle_collar, frilled_collar',cat:'collar',img:''},
-      // 版型
-      {id:701,name:'修身',en:'slim fit',prompt:'slim_fit, fitted, tight_clothes',cat:'silhouette',img:''},
-      {id:702,name:'宽松',en:'oversized',prompt:'oversized, loose_clothes, baggy',cat:'silhouette',img:''},
-      {id:703,name:'伞裙',en:'umbrella skirt',prompt:'flared_dress, circle_skirt',cat:'silhouette',img:''},
-      {id:704,name:'鱼尾',en:'mermaid',prompt:'mermaid_dress, fishtail_dress',cat:'silhouette',img:''},
-      {id:705,name:'公主线',en:'princess line',prompt:'princess_dress, ball_gown, puffy_dress',cat:'silhouette',img:''},
-      // 材质
-      {id:801,name:'丝绸',en:'silk',prompt:'silk, silky, satin_fabric',cat:'material',img:''},
-      {id:802,name:'蕾丝',en:'lace',prompt:'lace, lace_trim, lace_overlay',cat:'material',img:''},
-      {id:803,name:'皮革',en:'leather',prompt:'leather, leather_outfit',cat:'material',img:''},
-      {id:804,name:'针织',en:'knit',prompt:'knit, cable_knit, knitted',cat:'material',img:''},
-      {id:805,name:'雪纺',en:'chiffon',prompt:'chiffon, sheer_fabric, flowing_fabric',cat:'material',img:''},
-      {id:806,name:'牛仔',en:'denim',prompt:'denim, jeans_fabric',cat:'material',img:''},
-      {id:807,name:'天鹅绒',en:'velvet',prompt:'velvet, velvet_dress, plush_fabric',cat:'material',img:''},
-      {id:808,name:'纱',en:'tulle',prompt:'tulle, tulle_skirt, sheer',cat:'material',img:''},
-      // 花纹
-      {id:901,name:'格纹',en:'plaid',prompt:'plaid, tartan, checkered',cat:'pattern',img:''},
-      {id:902,name:'条纹',en:'stripes',prompt:'striped, horizontal_stripes, vertical_stripes',cat:'pattern',img:''},
-      {id:903,name:'波点',en:'polka dots',prompt:'polka_dot, dotted',cat:'pattern',img:''},
-      {id:904,name:'碎花',en:'floral',prompt:'floral_print, flower_pattern',cat:'pattern',img:''},
-      {id:905,name:'星空',en:'starry',prompt:'starry_print, galaxy_print, star_pattern',cat:'pattern',img:''},
-      {id:906,name:'迷彩',en:'camo',prompt:'camouflage, camo_pattern',cat:'pattern',img:''},
-      // 配饰
-      {id:1001,name:'围巾',en:'scarf',prompt:'scarf, knit_scarf',cat:'accessory',img:''},
-      {id:1002,name:'贝雷帽',en:'beret',prompt:'beret',cat:'accessory',img:''},
-      {id:1003,name:'丝带',en:'ribbon',prompt:'ribbon, hair_ribbon, bow',cat:'accessory',img:''},
-      {id:1004,name:'手套',en:'gloves',prompt:'gloves, fingerless_gloves',cat:'accessory',img:''},
-      {id:1005,name:'项链',en:'necklace',prompt:'necklace, pendant, choker',cat:'accessory',img:''},
-      {id:1006,name:'耳饰',en:'earrings',prompt:'earrings, drop_earrings, stud_earrings',cat:'accessory',img:''},
-      {id:1007,name:'眼镜',en:'glasses',prompt:'glasses, round_glasses, semi-rimless_glasses',cat:'accessory',img:''},
-      // 腿部
-      {id:1101,name:'过膝袜',en:'thigh highs',prompt:'thighhighs, over-knee_socks',cat:'legwear',img:''},
-      {id:1102,name:'连裤袜',en:'pantyhose',prompt:'pantyhose, tights, black_pantyhose',cat:'legwear',img:''},
-      {id:1103,name:'短袜',en:'ankle socks',prompt:'ankle_socks, short_socks',cat:'legwear',img:''},
-      {id:1104,name:'渔网袜',en:'fishnet',prompt:'fishnet_stockings, fishnet_legwear',cat:'legwear',img:''},
-      // 鞋子
-      {id:1201,name:'高跟鞋',en:'high heels',prompt:'high_heels, stiletto_heels, pumps',cat:'shoes',img:''},
-      {id:1202,name:'靴子',en:'boots',prompt:'boots, knee_boots, combat_boots',cat:'shoes',img:''},
-      {id:1203,name:'运动鞋',en:'sneakers',prompt:'sneakers, athletic_shoes',cat:'shoes',img:''},
-      {id:1204,name:'凉鞋',en:'sandals',prompt:'sandals, strappy_sandals',cat:'shoes',img:''},
-      {id:1205,name:'乐福鞋',en:'loafers',prompt:'loafers, school_shoes',cat:'shoes',img:''}
-    ]};
-  }
-  sv();
+async function sb(path,opt={}){
+  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:H,...opt});
+  if(!r.ok)throw new Error(await r.text());
+  const t=await r.text();
+  return t?JSON.parse(t):null;
 }
-function sv(){for(let k in K)try{localStorage.setItem(K[k],JSON.stringify(D[k]))}catch(e){}}
-function x(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
-function nd(){return new Date().toISOString().slice(0,10)}
-function uid(){return Date.now()+Math.random()*1e3|0}
+
+// ===== STATE =====
+let D={p:[],a:[],cats:[],items:[]};
+let S={tab:'prompts',admin:false,pF:null,aF:null,cF:null,sel:new Set(),et:null,eid:null};
+const isAdmin=()=>S.admin;
+
+// ===== DATA LOADING =====
+async function loadAll(){
+  try{
+    const [p,a,cats,items]=await Promise.all([
+      sb('prompts?order=created_at.desc'),
+      sb('artists?order=created_at.desc'),
+      sb('clothing_cats?order=sort_order.asc'),
+      sb('clothing_items?order=created_at.asc')
+    ]);
+    D.p=p||[];D.a=a||[];D.cats=cats||[];D.items=items||[];
+  }catch(e){console.error(e);toast('数据加载失败')}
+  R();
+}
+
+// ===== ADMIN =====
+function toggleAdmin(){
+  if(S.admin){
+    S.admin=false;
+    sessionStorage.removeItem('yg_admin');
+    updAdmin();R();return;
+  }
+  const pw=prompt('请输入管理员密码：');
+  if(!pw)return;
+  sb('admin_config?id=eq.1&select=password_hash').then(d=>{
+    if(d&&d[0]&&d[0].password_hash===pw){
+      S.admin=true;sessionStorage.setItem('yg_admin','1');
+      toast('管理员登录成功');updAdmin();R();
+    }else{toast('密码错误');S.admin=false}
+  }).catch(()=>toast('验证失败'));
+}
+function updAdmin(){
+  const btn=document.getElementById('adminBtn');
+  const st=document.getElementById('adminStatus');
+  if(S.admin){btn.textContent='🔓 退出管理';btn.className='logged';st.textContent='管理模式'}
+  else{btn.textContent='🔒 管理员登录';btn.className='';st.textContent=''}
+  document.querySelectorAll('#pAdd,#aAdd,#ciAdd,#ccAdd').forEach(b=>b.style.display=S.admin?'':'none');
+}
+
+// ===== UTILS =====
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
 function cpx(t){navigator.clipboard.writeText(t);toast('已复制到剪贴板 ✓')}
-const svgCp='<svg class="ic-cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
-const svgEd='<svg class="ic-cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
-const svgDl='<svg class="ic-cp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
+function slb(u){document.getElementById('lbi').src=u;document.getElementById('lb').classList.add('show')}
+const svgCp='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+const svgEd='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+const svgDl='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
 
 // ===== TAB =====
 function sw(t){S.tab=t;document.querySelectorAll('.nb').forEach((b,i)=>b.classList.toggle('on',['prompts','artists','clothing'][i]===t));document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id==='s-'+t));R()}
 
 // ===== RENDER =====
 function R(){if(S.tab==='prompts')rP();else if(S.tab==='artists')rA();else rC()}
-function gT(a,f='tags'){const s=new Set();a.forEach(i=>(i[f]||[]).forEach(t=>s.add(t)));return[...s]}
+function gT(a){const s=new Set();a.forEach(i=>(i.tags||[]).forEach(t=>s.add(t)));return[...s]}
+function adminActs(cpCmd,edCmd,dlCmd){
+  if(!isAdmin())return`<button onclick="event.stopPropagation();${cpCmd}" title="复制">${svgCp}</button>`;
+  return`<button onclick="event.stopPropagation();${cpCmd}" title="复制">${svgCp}</button><button onclick="event.stopPropagation();${edCmd}" title="编辑">${svgEd}</button><button onclick="event.stopPropagation();${dlCmd}" title="删除">${svgDl}</button>`;
+}
 
-// -- Prompt --
+// -- Prompts --
 function rP(){
   const tags=gT(D.p);
-  document.getElementById('pF').innerHTML=tags.map(t=>`<span class="ftg${S.pF===t?' on':''}" onclick="S.pF=S.pF==='${t}'?null:'${t}';R()">${t}</span>`).join('');
+  document.getElementById('pF').innerHTML=tags.map(t=>`<span class="ftg${S.pF===t?' on':''}" onclick="S.pF=S.pF==='${esc(t)}'?null:'${esc(t)}';R()">${esc(t)}</span>`).join('');
   let l=D.p,q=document.getElementById('pS').value.toLowerCase();
-  if(q)l=l.filter(p=>p.title.toLowerCase().includes(q)||p.prompt.toLowerCase().includes(q)||p.tags.some(t=>t.includes(q)));
-  if(S.pF)l=l.filter(p=>p.tags.includes(S.pF));
+  if(q)l=l.filter(p=>p.title.toLowerCase().includes(q)||p.prompt.toLowerCase().includes(q)||(p.tags||[]).some(t=>t.includes(q)));
+  if(S.pF)l=l.filter(p=>(p.tags||[]).includes(S.pF));
   const g=document.getElementById('pG');
   if(!l.length){g.innerHTML='<div class="empty"><p>暂无 prompt</p></div>';return}
   g.innerHTML=l.map((p,i)=>`<div class="cd" onclick="dP(${p.id})">
-    ${p.img?`<img class="cd-img" src="${x(p.img)}" onerror="this.outerHTML='<div class=cd-ph>📷</div>'">`:'<div class="cd-ph">📷</div>'}
-    <div class="cd-b"><div class="cd-h"><div class="cd-t">${x(p.title)}</div><div class="cd-n">#${String(i+1).padStart(3,'0')}</div></div>
-    <div class="cd-d">${x(p.prompt)}</div>
-    <div class="cd-tg">${p.tags.map(t=>`<span class="cd-tgi">${x(t)}</span>`).join('')}</div>
-    <div class="cd-m"><span>${x(p.model||'')}</span><div class="cd-a">
-      <button onclick="event.stopPropagation();cpx(${JSON.stringify(p.prompt)})" title="复制">${svgCp}</button>
-      <button onclick="event.stopPropagation();oM('p',${p.id})" title="编辑">${svgEd}</button>
-      <button onclick="event.stopPropagation();dl('p',${p.id})" title="删除">${svgDl}</button>
-    </div></div></div></div>`).join('');
+    ${p.img?`<img class="cd-img" src="${esc(p.img)}" onerror="this.outerHTML='<div class=cd-ph>📷</div>'">`:'<div class="cd-ph">📷</div>'}
+    <div class="cd-b"><div class="cd-h"><div class="cd-t">${esc(p.title)}</div><div class="cd-n">#${String(i+1).padStart(3,'0')}</div></div>
+    <div class="cd-d">${esc(p.prompt)}</div>
+    <div class="cd-tg">${(p.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
+    <div class="cd-m"><span>${esc(p.model||'')}</span><div class="cd-a">${adminActs(`cpx(${JSON.stringify(p.prompt)})`,`oM('p',${p.id})`,`dl('prompts',${p.id})`)}</div></div></div></div>`).join('');
 }
 
-// -- Artist --
+// -- Artists --
 function rA(){
   const tags=gT(D.a);
-  document.getElementById('aF').innerHTML=tags.map(t=>`<span class="ftg${S.aF===t?' on':''}" onclick="S.aF=S.aF==='${t}'?null:'${t}';R()">${x(t)}</span>`).join('');
+  document.getElementById('aF').innerHTML=tags.map(t=>`<span class="ftg${S.aF===t?' on':''}" onclick="S.aF=S.aF==='${esc(t)}'?null:'${esc(t)}';R()">${esc(t)}</span>`).join('');
   let l=D.a,q=document.getElementById('aS').value.toLowerCase();
-  if(q)l=l.filter(a=>a.name.toLowerCase().includes(q)||a.string.toLowerCase().includes(q)||a.tags.some(t=>t.includes(q)));
-  if(S.aF)l=l.filter(a=>a.tags.includes(S.aF));
+  if(q)l=l.filter(a=>a.name.toLowerCase().includes(q)||a.string.toLowerCase().includes(q)||(a.tags||[]).some(t=>t.includes(q)));
+  if(S.aF)l=l.filter(a=>(a.tags||[]).includes(S.aF));
   const g=document.getElementById('aG');
   if(!l.length){g.innerHTML='<div class="empty"><p>暂无画师串</p></div>';return}
   const mc=['mb0','mb1','mb2','mb3'];
   g.innerHTML=l.map(a=>{
     const imgs=a.images||[];
-    const ih=imgs.length?imgs.slice(0,3).map(u=>`<img src="${x(u)}" onerror="this.outerHTML='<div class=ph>×</div>'">`).join(''):'<div class="ph">暂无</div><div class="ph"></div><div class="ph"></div>';
+    const ih=imgs.length?imgs.slice(0,3).map(u=>`<img src="${esc(u)}" onerror="this.outerHTML='<div class=ph>×</div>'">`).join(''):'<div class="ph">暂无</div><div class="ph"></div><div class="ph"></div>';
     return`<div class="cd" onclick="dA(${a.id})"><div class="cd-b">
-      <div class="cd-h"><div class="cd-t">${x(a.name)}</div></div>
+      <div class="cd-h"><div class="cd-t">${esc(a.name)}</div></div>
       <div class="ai-r">${ih}</div>
-      <div class="cd-d">${x(a.string)}</div>
-      <div style="margin-bottom:6px">${(a.models||[]).map((m,i)=>`<span class="mbdg ${mc[i%4]}">${x(m.name)}</span>`).join('')}</div>
-      <div class="cd-tg">${a.tags.map(t=>`<span class="cd-tgi">${x(t)}</span>`).join('')}</div>
-      <div class="cd-m"><span>${a.date||''}</span><div class="cd-a">
-        <button onclick="event.stopPropagation();cpx(${JSON.stringify(a.string)})" title="复制">${svgCp}</button>
-        <button onclick="event.stopPropagation();oM('a',${a.id})" title="编辑">${svgEd}</button>
-        <button onclick="event.stopPropagation();dl('a',${a.id})" title="删除">${svgDl}</button>
-      </div></div></div></div>`}).join('');
+      <div class="cd-d">${esc(a.string)}</div>
+      <div style="margin-bottom:6px">${(a.models||[]).map((m,i)=>`<span class="mbdg ${mc[i%4]}">${esc(m.name)}</span>`).join('')}</div>
+      <div class="cd-tg">${(a.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
+      <div class="cd-m"><span>${(a.created_at||'').slice(0,10)}</span><div class="cd-a">${adminActs(`cpx(${JSON.stringify(a.string)})`,`oM('a',${a.id})`,`dl('artists',${a.id})`)}</div></div></div></div>`}).join('');
 }
 
 // -- Clothing --
 function rC(){
-  const cats=D.c.cats,items=D.c.items;
-  // category filter
-  const catsHtml=cats.map(c=>{
+  const cats=D.cats,items=D.items;
+  document.getElementById('cCats').innerHTML=cats.map(c=>{
     const cnt=items.filter(i=>i.cat===c.id).length;
-    return`<div class="cl-cat${S.cF===c.id?' on':''}" onclick="S.cF=S.cF==='${c.id}'?null:'${c.id}';rC()">${c.icon} ${x(c.name)} <span class="cnt">${cnt}</span></div>`;
+    return`<div class="cl-cat${S.cF===c.id?' on':''}" onclick="S.cF=S.cF==='${c.id}'?null:'${c.id}';rC()">${c.icon} ${esc(c.name)} <span class="cnt">${cnt}</span></div>`;
   }).join('');
-  document.getElementById('cCats').innerHTML=catsHtml;
-
-  // filter
   let fl=items;
   if(S.cF)fl=fl.filter(i=>i.cat===S.cF);
   const q=document.getElementById('cS').value.toLowerCase();
-  if(q)fl=fl.filter(i=>i.name.toLowerCase().includes(q)||i.en.toLowerCase().includes(q)||i.prompt.toLowerCase().includes(q));
-
-  // selected items
+  if(q)fl=fl.filter(i=>(i.name||'').toLowerCase().includes(q)||(i.en||'').toLowerCase().includes(q)||(i.prompt||'').toLowerCase().includes(q));
   const selItems=items.filter(i=>S.sel.has(i.id));
   const bar=document.getElementById('cpBar');
   if(selItems.length){
     const combined=[...new Set(selItems.map(i=>i.prompt).filter(Boolean).join(', ').split(/,\s*/).filter(Boolean))].join(', ');
     bar.className='cp-bar show';
-    bar.innerHTML=`<div class="cp-top">
-      <div class="cp-info">已选择 <strong>${selItems.length}</strong> 件 · ${selItems.map(i=>i.name).join('、')}</div>
-      <div class="cp-acts">
-        <button class="cp-btn cp-all" onclick="selAll()">全选当前</button>
-        <button class="cp-btn cp-clear" onclick="S.sel.clear();rC()">清除选择</button>
-        <button class="cp-btn cp-copy" onclick="cpx('${combined.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">📋 一键复制 Prompt</button>
-      </div></div>
-      <div class="cp-preview">${x(combined)}</div>`;
-  } else {
-    bar.className='cp-bar';
-    bar.innerHTML='';
-  }
-
-  // grid
+    bar.innerHTML=`<div class="cp-top"><div class="cp-info">已选择 <strong>${selItems.length}</strong> 件 · ${selItems.map(i=>i.name).join('、')}</div>
+      <div class="cp-acts"><button class="cp-btn cp-all" onclick="selAll()">全选当前</button><button class="cp-btn cp-clear" onclick="S.sel.clear();rC()">清除</button>
+      <button class="cp-btn cp-copy" onclick="cpx(\`${combined.replace(/`/g,'\\`')}\`)">📋 一键复制 Prompt</button></div></div>
+      <div class="cp-preview">${esc(combined)}</div>`;
+  }else{bar.className='cp-bar';bar.innerHTML=''}
   const g=document.getElementById('cG');
   if(!fl.length){g.innerHTML='<div class="empty"><p>无匹配单品</p></div>';return}
   g.innerHTML=fl.map(i=>{
     const sel=S.sel.has(i.id);
+    const adm=isAdmin()?`<div class="acts"><button onclick="event.stopPropagation();oM('cie',${i.id})" title="编辑">✎</button><button onclick="event.stopPropagation();dlCI(${i.id})" title="删除">×</button></div>`:'';
     return`<div class="cl-it${sel?' sel':''}" onclick="tgSel(${i.id})">
-      <div class="ck"></div>
-      <div class="acts">
-        <button onclick="event.stopPropagation();oM('cie',${i.id})" title="编辑">✎</button>
-        <button onclick="event.stopPropagation();dlCI(${i.id})" title="删除">×</button>
-      </div>
-      ${i.img?`<img src="${x(i.img)}" onerror="this.outerHTML='<div class=iph>👘</div>'">`:'<div class="iph">👘</div>'}
-      <div class="nm">${x(i.name)}</div>
-      <div class="en">${x(i.en||'')}</div>
-      <div class="pr">${x(i.prompt)}</div>
+      <div class="ck"></div>${adm}
+      ${i.img?`<img src="${esc(i.img)}" onerror="this.outerHTML='<div class=iph>👘</div>'">`:'<div class="iph">👘</div>'}
+      <div class="nm">${esc(i.name)}</div><div class="en">${esc(i.en||'')}</div><div class="pr">${esc(i.prompt)}</div>
     </div>`}).join('');
 }
-
 function tgSel(id){if(S.sel.has(id))S.sel.delete(id);else S.sel.add(id);rC()}
 function selAll(){
-  let fl=D.c.items;
+  let fl=D.items;
   if(S.cF)fl=fl.filter(i=>i.cat===S.cF);
   const q=document.getElementById('cS').value.toLowerCase();
-  if(q)fl=fl.filter(i=>i.name.toLowerCase().includes(q)||i.en.toLowerCase().includes(q)||i.prompt.toLowerCase().includes(q));
+  if(q)fl=fl.filter(i=>(i.name||'').toLowerCase().includes(q)||(i.en||'').toLowerCase().includes(q)||(i.prompt||'').toLowerCase().includes(q));
   fl.forEach(i=>S.sel.add(i.id));rC();
 }
 
@@ -473,86 +360,100 @@ document.getElementById('uMo').addEventListener('click',e=>{if(e.target.classLis
 document.getElementById('dMo').addEventListener('click',e=>{if(e.target.classList.contains('mo'))cMo('dMo')});
 
 function oM(type,eid){
+  if(!isAdmin()){toast('请先登录管理员');return}
   S.et=type;S.eid=eid||null;
   const b=document.getElementById('uMb');
   if(type==='p'){
     const p=eid?D.p.find(i=>i.id===eid):null;
     b.innerHTML=`<h2>${p?'✎ 编辑':'✦ 新增'} Prompt</h2>
-      <div class="fg"><label>标题</label><input id="f_t" value="${x(p?.title||'')}"></div>
-      <div class="fg"><label>Prompt</label><textarea id="f_p">${x(p?.prompt||'')}</textarea></div>
-      <div class="fg"><label>Negative Prompt</label><textarea id="f_n" style="min-height:50px">${x(p?.negative||'')}</textarea></div>
-      <div class="fr"><div class="fg"><label>标签（逗号分隔）</label><input id="f_tg" value="${x(p?.tags?.join(', ')||'')}"></div>
-      <div class="fg"><label>模型 / 参数</label><input id="f_m" value="${x(p?.model||'')}"></div></div>
-      <div class="fg"><label>封面图 URL</label><input id="f_img" value="${x(p?.img||'')}" placeholder="图片直链"></div>
+      <div class="fg"><label>标题</label><input id="f_t" value="${esc(p?.title||'')}"></div>
+      <div class="fg"><label>Prompt</label><textarea id="f_p">${esc(p?.prompt||'')}</textarea></div>
+      <div class="fg"><label>Negative Prompt</label><textarea id="f_n" style="min-height:50px">${esc(p?.negative||'')}</textarea></div>
+      <div class="fr"><div class="fg"><label>标签（逗号分隔）</label><input id="f_tg" value="${esc((p?.tags||[]).join(', '))}"></div>
+      <div class="fg"><label>模型 / 参数</label><input id="f_m" value="${esc(p?.model||'')}"></div></div>
+      <div class="fg"><label>封面图 URL</label><input id="f_img" value="${esc(p?.img||'')}"></div>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
-  } else if(type==='a'){
+  }else if(type==='a'){
     const a=eid?D.a.find(i=>i.id===eid):null;
-    const ms=a?.models||[{name:'',notes:''}];
+    const ms=a?.models?.length?a.models:[{name:'',notes:''}];
     b.innerHTML=`<h2>${a?'✎ 编辑':'✦ 新增'}画师串</h2>
-      <div class="fg"><label>名称</label><input id="f_nm" value="${x(a?.name||'')}"></div>
-      <div class="fg"><label>画师串</label><textarea id="f_st">${x(a?.string||'')}</textarea></div>
-      <div class="fg"><label>标签</label><input id="f_tg" value="${x(a?.tags?.join(', ')||'')}"></div>
+      <div class="fg"><label>名称</label><input id="f_nm" value="${esc(a?.name||'')}"></div>
+      <div class="fg"><label>画师串</label><textarea id="f_st">${esc(a?.string||'')}</textarea></div>
+      <div class="fg"><label>标签</label><input id="f_tg" value="${esc((a?.tags||[]).join(', '))}"></div>
       <div class="fg"><label>展示图 URL（每行一个）</label><textarea id="f_im" style="min-height:50px">${(a?.images||[]).join('\n')}</textarea></div>
-      <div id="mFs">${ms.map((m,i)=>`<div class="fr" style="margin-bottom:6px"><div class="fg" style="margin:0"><label>模型${i+1}</label><input class="mfn" value="${x(m.name)}"></div><div class="fg" style="margin:0"><label>备注</label><input class="mfo" value="${x(m.notes)}"></div></div>`).join('')}</div>
+      <div id="mFs">${ms.map((m,i)=>`<div class="fr" style="margin-bottom:6px"><div class="fg" style="margin:0"><label>模型${i+1}</label><input class="mfn" value="${esc(m.name)}"></div><div class="fg" style="margin:0"><label>备注</label><input class="mfo" value="${esc(m.notes)}"></div></div>`).join('')}</div>
       <button onclick="addMF()" style="font-size:.76rem;color:var(--md);background:none;border:none;cursor:pointer;margin-bottom:12px">+ 添加模型</button>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
-  } else if(type==='ci'||type==='cie'){
-    const it=type==='cie'&&eid?D.c.items.find(i=>i.id===eid):null;
+  }else if(type==='ci'||type==='cie'){
+    const it=type==='cie'&&eid?D.items.find(i=>i.id===eid):null;
     b.innerHTML=`<h2>${it?'✎ 编辑':'✦ 新增'}服装单品</h2>
-      <div class="fr"><div class="fg"><label>名称</label><input id="f_cin" value="${x(it?.name||'')}"></div>
-      <div class="fg"><label>英文名</label><input id="f_cie" value="${x(it?.en||'')}"></div></div>
-      <div class="fg"><label>Prompt Tag</label><input id="f_cip" value="${x(it?.prompt||'')}" placeholder="如 pleated_skirt, plaid"></div>
-      <div class="fg"><label>所属分类</label><select id="f_cic">${D.c.cats.map(c=>`<option value="${c.id}"${it?.cat===c.id?' selected':''}>${c.icon} ${x(c.name)}</option>`).join('')}</select></div>
-      <div class="fg"><label>图片 URL</label><input id="f_cii" value="${x(it?.img||'')}" placeholder="展示图直链"></div>
+      <div class="fr"><div class="fg"><label>名称</label><input id="f_cin" value="${esc(it?.name||'')}"></div>
+      <div class="fg"><label>英文名</label><input id="f_cie" value="${esc(it?.en||'')}"></div></div>
+      <div class="fg"><label>Prompt Tag</label><input id="f_cip" value="${esc(it?.prompt||'')}"></div>
+      <div class="fg"><label>所属分类</label><select id="f_cic">${D.cats.map(c=>`<option value="${c.id}"${it?.cat===c.id?' selected':''}>${c.icon} ${esc(c.name)}</option>`).join('')}</select></div>
+      <div class="fg"><label>图片 URL</label><input id="f_cii" value="${esc(it?.img||'')}"></div>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
-  } else if(type==='cc'){
+  }else if(type==='cc'){
     b.innerHTML=`<h2>✦ 新增分类</h2>
-      <div class="fr"><div class="fg"><label>分类名称</label><input id="f_cn" placeholder="如：鞋子"></div>
-      <div class="fg"><label>图标 Emoji</label><input id="f_ci2" placeholder="👟" maxlength="4"></div></div>
+      <div class="fr"><div class="fg"><label>分类名称</label><input id="f_cn"></div><div class="fg"><label>图标 Emoji</label><input id="f_ci2" maxlength="4"></div></div>
+      <div class="fg"><label>分类 ID（英文）</label><input id="f_cid" placeholder="如 shoes"></div>
       <div class="mbt"><button class="bc" onclick="cMo('uMo')">取消</button><button class="bs" onclick="sF()">保存</button></div>`;
   }
   oMo('uMo');
 }
 function addMF(){const c=document.getElementById('mFs'),n=c.querySelectorAll('.mfn').length;c.insertAdjacentHTML('beforeend',`<div class="fr" style="margin-bottom:6px"><div class="fg" style="margin:0"><label>模型${n+1}</label><input class="mfn"></div><div class="fg" style="margin:0"><label>备注</label><input class="mfo"></div></div>`)}
 
-function sF(){
+async function sF(){
   const t=S.et;
-  if(t==='p'){
-    const title=document.getElementById('f_t').value.trim(),prompt=document.getElementById('f_p').value.trim();
-    if(!title||!prompt){alert('请填写标题和 Prompt');return}
-    const o={title,prompt,negative:document.getElementById('f_n').value.trim(),tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),model:document.getElementById('f_m').value.trim(),img:document.getElementById('f_img').value.trim(),date:nd()};
-    if(S.eid){const p=D.p.find(i=>i.id===S.eid);if(p)Object.assign(p,o)}else D.p.unshift({id:uid(),...o});
-  } else if(t==='a'){
-    const name=document.getElementById('f_nm').value.trim(),str=document.getElementById('f_st').value.trim();
-    if(!name||!str){alert('请填写名称和画师串');return}
-    const ns=document.querySelectorAll('.mfn'),os=document.querySelectorAll('.mfo'),models=[];
-    for(let i=0;i<ns.length;i++){const n=ns[i].value.trim();if(n)models.push({name:n,notes:os[i]?.value.trim()||''})}
-    const o={name,string:str,tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),models,images:document.getElementById('f_im').value.split('\n').map(s=>s.trim()).filter(Boolean),date:nd()};
-    if(S.eid){const a=D.a.find(i=>i.id===S.eid);if(a)Object.assign(a,o)}else D.a.unshift({id:uid(),...o});
-  } else if(t==='ci'||t==='cie'){
-    const name=document.getElementById('f_cin').value.trim();
-    if(!name){alert('请填写名称');return}
-    const o={name,en:document.getElementById('f_cie').value.trim(),prompt:document.getElementById('f_cip').value.trim(),cat:document.getElementById('f_cic').value,img:document.getElementById('f_cii').value.trim()};
-    if(t==='cie'&&S.eid){const it=D.c.items.find(i=>i.id===S.eid);if(it)Object.assign(it,o)}
-    else D.c.items.push({id:uid(),...o});
-  } else if(t==='cc'){
-    const name=document.getElementById('f_cn').value.trim();
-    if(!name){alert('请填写名称');return}
-    const icon=document.getElementById('f_ci2').value.trim()||'🏷️';
-    D.c.cats.push({id:name.toLowerCase().replace(/\s+/g,'_')+'_'+uid(),name,icon});
-  }
-  sv();cMo('uMo');R();
+  try{
+    if(t==='p'){
+      const title=document.getElementById('f_t').value.trim(),prompt=document.getElementById('f_p').value.trim();
+      if(!title||!prompt){alert('请填写标题和 Prompt');return}
+      const o={title,prompt,negative:document.getElementById('f_n').value.trim(),tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),model:document.getElementById('f_m').value.trim(),img:document.getElementById('f_img').value.trim()};
+      if(S.eid)await sb('prompts?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
+      else await sb('prompts',{method:'POST',body:JSON.stringify(o)});
+    }else if(t==='a'){
+      const name=document.getElementById('f_nm').value.trim(),str=document.getElementById('f_st').value.trim();
+      if(!name||!str){alert('请填写名称和画师串');return}
+      const ns=document.querySelectorAll('.mfn'),os=document.querySelectorAll('.mfo'),models=[];
+      for(let i=0;i<ns.length;i++){const n=ns[i].value.trim();if(n)models.push({name:n,notes:os[i]?.value.trim()||''})}
+      const o={name,string:str,tags:document.getElementById('f_tg').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean),models,images:document.getElementById('f_im').value.split('\n').map(s=>s.trim()).filter(Boolean)};
+      if(S.eid)await sb('artists?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
+      else await sb('artists',{method:'POST',body:JSON.stringify(o)});
+    }else if(t==='ci'||t==='cie'){
+      const name=document.getElementById('f_cin').value.trim();
+      if(!name){alert('请填写名称');return}
+      const o={name,en:document.getElementById('f_cie').value.trim(),prompt:document.getElementById('f_cip').value.trim(),cat:document.getElementById('f_cic').value,img:document.getElementById('f_cii').value.trim()};
+      if(t==='cie'&&S.eid)await sb('clothing_items?id=eq.'+S.eid,{method:'PATCH',body:JSON.stringify(o)});
+      else await sb('clothing_items',{method:'POST',body:JSON.stringify(o)});
+    }else if(t==='cc'){
+      const name=document.getElementById('f_cn').value.trim(),id=document.getElementById('f_cid').value.trim();
+      if(!name||!id){alert('请填写名称和 ID');return}
+      await sb('clothing_cats',{method:'POST',body:JSON.stringify({id,name,icon:document.getElementById('f_ci2').value.trim()||'🏷️',sort_order:D.cats.length+1})});
+    }
+    toast('保存成功');cMo('uMo');await loadAll();
+  }catch(e){console.error(e);toast('保存失败: '+e.message)}
+}
+
+// ===== DELETE =====
+async function dl(table,id){
+  if(!isAdmin()||!confirm('确定删除？'))return;
+  try{await sb(table+'?id=eq.'+id,{method:'DELETE'});toast('已删除');await loadAll()}catch(e){toast('删除失败')}
+}
+async function dlCI(id){
+  if(!isAdmin()||!confirm('确定删除？'))return;
+  try{await sb('clothing_items?id=eq.'+id,{method:'DELETE'});S.sel.delete(id);toast('已删除');await loadAll()}catch(e){toast('删除失败')}
 }
 
 // ===== DETAIL =====
 function dP(id){
   const p=D.p.find(i=>i.id===id);if(!p)return;
-  document.getElementById('dMb').innerHTML=`<h2>${x(p.title)}</h2>
-    ${p.img?`<img src="${x(p.img)}" style="width:100%;max-height:260px;object-fit:contain;border-radius:8px;background:var(--mf);margin-bottom:10px" onclick="slb('${x(p.img)}')">`:''}
-    <div class="di">📅 ${p.date||''}　🔧 ${x(p.model||'')}</div>
-    <div class="cd-tg" style="margin:8px 0">${p.tags.map(t=>`<span class="cd-tgi">${x(t)}</span>`).join('')}</div>
-    <label style="font-size:.77rem;color:var(--tm)">Prompt</label><div class="dp">${x(p.prompt)}</div>
-    ${p.negative?`<label style="font-size:.77rem;color:var(--tm)">Negative</label><div class="dp" style="border-left:3px solid var(--mb)">${x(p.negative)}</div>`:''}
+  document.getElementById('dMb').innerHTML=`<h2>${esc(p.title)}</h2>
+    ${p.img?`<img src="${esc(p.img)}" style="width:100%;max-height:260px;object-fit:contain;border-radius:8px;background:var(--mf);margin-bottom:10px" onclick="slb('${esc(p.img)}')">`:''}
+    <div class="di">📅 ${(p.created_at||'').slice(0,10)}　🔧 ${esc(p.model||'')}</div>
+    <div class="cd-tg" style="margin:8px 0">${(p.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
+    <label style="font-size:.77rem;color:var(--tm)">Prompt</label><div class="dp">${esc(p.prompt)}</div>
+    ${p.negative?`<label style="font-size:.77rem;color:var(--tm)">Negative</label><div class="dp" style="border-left:3px solid var(--mb)">${esc(p.negative)}</div>`:''}
     <div style="display:flex;gap:8px;margin-top:12px">
       <button class="cpb" onclick="cpx(${JSON.stringify(p.prompt)});this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制 Prompt',1200)">复制 Prompt</button>
       <button class="bc" onclick="cMo('dMo')">关闭</button></div>`;
@@ -561,26 +462,23 @@ function dP(id){
 function dA(id){
   const a=D.a.find(i=>i.id===id);if(!a)return;
   const mc=['mb0','mb1','mb2','mb3'];
-  const imgs=(a.images||[]).map(u=>`<img src="${x(u)}" onclick="event.stopPropagation();slb('${x(u)}')" onerror="this.style.display='none'">`).join('');
-  document.getElementById('dMb').innerHTML=`<h2>${x(a.name)}</h2>
-    <div class="di">📅 ${a.date||''}</div>
-    <div class="cd-tg" style="margin:8px 0">${a.tags.map(t=>`<span class="cd-tgi">${x(t)}</span>`).join('')}</div>
-    <label style="font-size:.77rem;color:var(--tm)">画师串</label><div class="dp">${x(a.string)}</div>
+  const imgs=(a.images||[]).map(u=>`<img src="${esc(u)}" onclick="event.stopPropagation();slb('${esc(u)}')" onerror="this.style.display='none'">`).join('');
+  document.getElementById('dMb').innerHTML=`<h2>${esc(a.name)}</h2>
+    <div class="di">📅 ${(a.created_at||'').slice(0,10)}</div>
+    <div class="cd-tg" style="margin:8px 0">${(a.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
+    <label style="font-size:.77rem;color:var(--tm)">画师串</label><div class="dp">${esc(a.string)}</div>
     ${imgs?`<label style="font-size:.77rem;color:var(--tm)">画风展示</label><div class="ad-imgs">${imgs}</div>`:''}
-    ${(a.models||[]).length?`<div style="margin:10px 0"><div style="font-size:.82rem;color:var(--ts);margin-bottom:6px;font-weight:500">模型表现对比</div>${a.models.map((m,i)=>`<div style="margin:5px 0;padding:8px;background:var(--bg);border-radius:7px;border:1px solid var(--bd)"><span class="mbdg ${mc[i%4]}">${x(m.name)}</span><span style="font-size:.82rem;color:var(--ts)">${x(m.notes)}</span></div>`).join('')}</div>`:''}
+    ${(a.models||[]).length?`<div style="margin:10px 0"><div style="font-size:.82rem;color:var(--ts);margin-bottom:6px;font-weight:500">模型表现对比</div>${a.models.map((m,i)=>`<div style="margin:5px 0;padding:8px;background:var(--bg);border-radius:7px;border:1px solid var(--bd)"><span class="mbdg ${mc[i%4]}">${esc(m.name)}</span><span style="font-size:.82rem;color:var(--ts)">${esc(m.notes)}</span></div>`).join('')}</div>`:''}
     <div style="display:flex;gap:8px;margin-top:12px">
       <button class="cpb" onclick="cpx(${JSON.stringify(a.string)});this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制画师串',1200)">复制画师串</button>
       <button class="bc" onclick="cMo('dMo')">关闭</button></div>`;
   oMo('dMo');
 }
 
-// ===== DELETE =====
-function dl(k,id){if(!confirm('确定删除？'))return;D[k]=D[k].filter(i=>i.id!==id);sv();R()}
-function dlCI(id){if(!confirm('确定删除？'))return;D.c.items=D.c.items.filter(i=>i.id!==id);S.sel.delete(id);sv();rC()}
-function slb(u){document.getElementById('lbi').src=u;document.getElementById('lb').classList.add('show')}
-
 // ===== INIT =====
-ld();R();
+if(sessionStorage.getItem('yg_admin'))S.admin=true;
+updAdmin();
+loadAll();
 document.getElementById('pS').addEventListener('input',R);
 document.getElementById('aS').addEventListener('input',R);
 document.getElementById('cS').addEventListener('input',rC);
