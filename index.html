@@ -455,9 +455,10 @@ function dP(id){
     <label style="font-size:.77rem;color:var(--tm)">Prompt</label><div class="dp">${esc(p.prompt)}</div>
     ${p.negative?`<label style="font-size:.77rem;color:var(--tm)">Negative</label><div class="dp" style="border-left:3px solid var(--mb)">${esc(p.negative)}</div>`:''}
     <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="cpb" onclick="cpx(${JSON.stringify(p.prompt)});this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制 Prompt',1200)">复制 Prompt</button>
+      <button class="cpb" id="cpPrmBtn">复制 Prompt</button>
       <button class="bc" onclick="cMo('dMo')">关闭</button></div>`;
   oMo('dMo');
+  document.getElementById('cpPrmBtn').onclick=function(){cpx(p.prompt);this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制 Prompt',1200)};
 }
 function dA(id){
   const a=D.a.find(i=>i.id===id);if(!a)return;
@@ -470,9 +471,10 @@ function dA(id){
     ${imgs?`<label style="font-size:.77rem;color:var(--tm)">画风展示</label><div class="ad-imgs">${imgs}</div>`:''}
     ${(a.models||[]).length?`<div style="margin:10px 0"><div style="font-size:.82rem;color:var(--ts);margin-bottom:6px;font-weight:500">模型表现对比</div>${a.models.map((m,i)=>`<div style="margin:5px 0;padding:8px;background:var(--bg);border-radius:7px;border:1px solid var(--bd)"><span class="mbdg ${mc[i%4]}">${esc(m.name)}</span><span style="font-size:.82rem;color:var(--ts)">${esc(m.notes)}</span></div>`).join('')}</div>`:''}
     <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="cpb" onclick="cpx(${JSON.stringify(a.string)});this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制画师串',1200)">复制画师串</button>
+      <button class="cpb" id="cpArtBtn">复制画师串</button>
       <button class="bc" onclick="cMo('dMo')">关闭</button></div>`;
   oMo('dMo');
+  document.getElementById('cpArtBtn').onclick=function(){cpx(a.string);this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制画师串',1200)};
 }
 
 // ===== INIT =====
