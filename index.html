@@ -52,7 +52,7 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .cd::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--mt),var(--mb),var(--mg));opacity:0;transition:opacity .3s}
 .cd:hover{transform:translateY(-3px);box-shadow:0 8px 26px var(--shh);border-color:var(--mm);background:var(--bgh)}
 .cd:hover::before{opacity:1}
-.cd-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--mf);display:block}
+.cd-img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--mf);display:block}
 .cd-img.pos-top{object-position:top}.cd-img.pos-center{object-position:center}.cd-img.pos-bottom{object-position:bottom}
 .cd-ph{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--mf),var(--mm));display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:.84rem}
 .cd-b{padding:16px;flex:1;display:flex;flex-direction:column}
@@ -69,10 +69,11 @@ header .sub{font-weight:300;font-size:.82rem;color:var(--tm);letter-spacing:.25e
 .ic{width:14px;height:14px}
 
 /* Artist images */
-.ai-r{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px}
-.ai-r img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:var(--mf)}
-.ai-r img.pos-top{object-position:top}.ai-r img.pos-center{object-position:center}.ai-r img.pos-bottom{object-position:bottom}
-.ai-r .ph{width:100%;aspect-ratio:1;background:var(--mf);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--tm)}
+.ai-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-bottom:10px}
+.ai-gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;background:var(--mf);cursor:pointer;transition:transform .3s}
+.ai-gallery img:hover{transform:scale(1.02)}
+.ai-gallery img.pos-top{object-position:top}.ai-gallery img.pos-center{object-position:center}.ai-gallery img.pos-bottom{object-position:bottom}
+.ai-ph{width:100%;aspect-ratio:1;border-radius:6px;background:linear-gradient(135deg,var(--mf),var(--mm));display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:.84rem;margin-bottom:10px}
 .mbdg{display:inline-block;font-size:.68rem;padding:2px 7px;border-radius:7px;margin:0 3px 3px 0}
 .mb0{background:rgba(138,168,160,.2);color:var(--mk)}.mb1{background:rgba(148,167,176,.2);color:#5a6f7a}.mb2{background:rgba(181,163,166,.2);color:#7a5a5f}.mb3{background:rgba(166,163,181,.2);color:#5f5a7a}
 
@@ -305,10 +306,11 @@ function rA(){
   const mc=['mb0','mb1','mb2','mb3'];
   g.innerHTML=l.map(a=>{
     const imgs=a.images||[];
-    const ih=imgs.length?imgs.slice(0,3).map(u=>`<img src="${esc(u)}" onerror="this.outerHTML='<div class=ph>×</div>'">`).join(''):'<div class="ph">暂无</div><div class="ph"></div><div class="ph"></div>';
+    const pos=a.img_pos||'top';
+    const ih=imgs.length?`<div class="ai-gallery">${imgs.map(u=>`<img class="pos-${pos}" src="${esc(u)}" onclick="event.stopPropagation();slb('${esc(u)}')" onerror="this.remove()">`).join('')}</div>`:'<div class="ai-ph">🎨 暂无画风展示</div>';
     return`<div class="cd" onclick="dA(${a.id})"><div class="cd-b">
       <div class="cd-h"><div class="cd-t">${esc(a.name)}</div></div>
-      <div class="ai-r">${ih}</div>
+      ${ih}
       <div class="cd-d">${esc(a.string)}</div>
       <div style="margin-bottom:6px">${(a.models||[]).map((m,i)=>`<span class="mbdg ${mc[i%4]}">${esc(m.name)}</span>`).join('')}</div>
       <div class="cd-tg">${(a.tags||[]).map(t=>`<span class="cd-tgi">${esc(t)}</span>`).join('')}</div>
